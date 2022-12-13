@@ -39,6 +39,6 @@ class Tweet(BaseModel):
         min_length=1,
         max_length=256
     )
-    created_at: datetime = Field(default=datetime.now())
+    created_at: datetime = Field(default=datetime.utcnow())
     updated_at: Optional[datetime] = Field(default=None)
     by: User = Field(...)
