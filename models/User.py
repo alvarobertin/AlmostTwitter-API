@@ -1,33 +1,16 @@
-# Python
-from uuid import UUID
-from datetime import date, datetime
-from typing import Optional
+from sqlalchemy import Boolean, Column, Integer, String, Date
+from sqlalchemy.orm import relationship
 
-# Pydantic
-from pydantic import BaseModel, EmailStr
-from pydantic import Field
+import uuid
+
+from db import Base
 
 
-class UserBase(BaseModel):
-    user_id: UUID = Field(...)
-    email: EmailStr = Field(...)
-
-class UserLogin(UserBase):
-    password: str = Field(
-        ..., 
-        min_length=8,
-        max_length=64
-    )
-
-class User(UserBase):    
-    first_name: str = Field(
-        ...,
-        min_length=1,
-        max_length=50
-    )
-    last_name: str = Field(
-        ...,
-        min_length=1,
-        max_length=50
-    )
-    birth_date: Optional[date] = Field(default=None)
+class User(Base):
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
+    full_name = Column(String, index=True)
+    email = Column(String, unique=True, index=True, nullable=False)
+    birth_date = Column(Date, nullable=True)
+    hashed_password = Column(String, nullable=False)
+    is_active = Column(Boolean(), default=True)
+    is_superuser = Column(Boolean(), default=False)

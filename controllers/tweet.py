@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import APIRouter, status
 
-from models import Tweet
+from schemas import Tweet
 
 router = APIRouter(
     prefix="/tweets",

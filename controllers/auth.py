@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status
 
-from models import User
+from schemas import User
 
 router = APIRouter(
     prefix="/auth",
