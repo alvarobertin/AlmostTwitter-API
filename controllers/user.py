@@ -1,8 +1,15 @@
 from typing import List
 
 from fastapi import APIRouter, status
+from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.encoders import jsonable_encoder
 
-from schemas import User
+from schemas import User, UserInDB
+
+# database
+from config.database import Session
+from models import User as UserModel
+
 
 router = APIRouter(
     prefix="/users",
@@ -17,7 +24,12 @@ router = APIRouter(
     tags = ["Users"]
 )
 def get_all_users():
-    pass
+    db = Session()
+    result = db.query(UserModel).all()
+
+
+    return jsonable_encoder(result)
+
 
 @router.get(
     path = "/{user_id}",

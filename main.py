@@ -10,6 +10,7 @@ from controllers import router
 
 # database
 from config.database import Session, engine, Base
+from models import User
 
 app = FastAPI()
 app.title = "AlmostTwitterAPI"

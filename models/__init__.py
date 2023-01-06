@@ -1,2 +1,2 @@
 from .user import *
-from .tweet import *
+# from .tweet import *

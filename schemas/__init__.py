@@ -1,2 +1,2 @@
-from .User import User, UserLogin
+from .User import User, UserLogin, UserRegister, UserInDB
 from .Tweet import Tweet

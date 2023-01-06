@@ -9,10 +9,9 @@ from config.database import Base
 class User(Base):
 
     __tablename__ = "User"
+    email = Column(String, primary_key=True,index=True)
 
-    id = Column(Integer, primary_key=True, index=True)
     full_name = Column(String, index=True)
-    email = Column(String, unique=True, index=True, nullable=False)
     birth_date = Column(Date, nullable=True)
     hashed_password = Column(String, nullable=False)
     is_active = Column(Boolean(), default=True)
