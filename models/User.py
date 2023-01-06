@@ -3,11 +3,14 @@ from sqlalchemy.orm import relationship
 
 import uuid
 
-from db import Base
+from config.database import Base
 
 
 class User(Base):
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
+
+    __tablename__ = "User"
+
+    id = Column(Integer, primary_key=True, index=True)
     full_name = Column(String, index=True)
     email = Column(String, unique=True, index=True, nullable=False)
     birth_date = Column(Date, nullable=True)
